@@ -1,0 +1,1 @@
+//Lugar onde vamos realmente escrever e detalhar nossas funcoes, lembrem de comentar, por favor!
