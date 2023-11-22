@@ -6,11 +6,11 @@
 #include <ctime>
 #include <cstdlib>
 // Use esse no Linux:
-//#include <ncurses.h>
+#include <ncurses.h>
 // Comando para compilação no Linux: g++ -std=c++17 main.cpp -o (nome) -lncurses
 // Comando para executar: ./(nome)
 //Use esse para Windows:
-#include <ncurses/ncurses.h>
+//#include <ncurses/ncurses.h>
 // Comando para compilação no windows: g++ main.cpp -o test.exe -lncurses -DNCURSES_STATIC 
 // Comando para executar: teste.exe
 
