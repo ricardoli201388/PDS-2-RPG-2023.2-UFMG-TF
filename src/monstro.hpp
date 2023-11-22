@@ -1,0 +1,1 @@
+//Lugar onde os cabecalhos das funcoes do monstro estarao localizados

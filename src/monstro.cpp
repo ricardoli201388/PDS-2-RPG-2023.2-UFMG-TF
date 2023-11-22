@@ -1,0 +1,1 @@
+//Lugar onde as funcoes de monstro estarao localizados
