@@ -83,33 +83,33 @@ Tesouro do dragão - Ganham o diploma e 1000 moedas de ouro!
 
 **Bárbaro:**
 
-Começa com um  Machado de Prata - 
+Começa com um  Machado de Prata - 30
 
-No nível 9 da Torre ele ganha um Machado de Ouro - 
+No nível 9 da Torre ele ganha um Machado de Ouro - 60
 
 **Inventor**
 
-Começa com uma Chave inglesa polida - 
+Começa com uma Chave inglesa polida - 20
 
-No nível 9 ele ganha uma Chave inglesa reluzente - 
+No nível 9 ele ganha uma Chave inglesa reluzente - 40
 
 **Druida**
 
-Começa com uma Rapieira de Quatzo - 
+Começa com uma Rapieira de Quatzo - 25
 
-No nível 9 da Torre ele ganha uma Rapiera de Obsidiana - 
+No nível 9 da Torre ele ganha uma Rapiera de Obsidiana - 50
 
 **Mago**
 
-Começa com uma Ventos uivantes - 
+Começa com uma Ventos uivantes - 45
 
-No nível 9 da Torre ele ganha Bola de Fogo - 
+No nível 9 da Torre ele ganha Bola de Fogo - 90
 
 **Bardo**
 
-Começa com uma Poema Ofensivo - 
+Começa com uma Poema Ofensivo - 40
 
-No nível 9 da Torre ele ganha Dança Forçada - 
+No nível 9 da Torre ele ganha Dança Forçada - 80
 
 
 ### **Estatísticas dos personagens:**
@@ -118,36 +118,36 @@ Para trazer uma jogabilidade diferente, pensamos em aplicar diferentes estatíst
 
 **Bárbaro:**
 
-Começa com 
-No nível 9 da Torre ele ganha 
+Começa com 350 de vida
+No nível 9 da Torre ele fica com 450 de vida
 
 
 **Inventor:**
 
-Começa com 
+Começa com 350
 
-No nível 9 ele ganha
+No nível 9 da Torre ele fica com 450 de vida
 
 
 **Druida:**
 
-Começa com uma 
+Começa com uma 300
 
-No nível 9 da Torre ele ganha 
+No nível 9 da Torre ele fica com 400 de vida
 
 
 **Mago:**
 
-Começa com uma 
+Começa com uma 200
 
-No nível 9 da Torre ele ganha 
+No nível 9 da Torre ele fica com 300 de vida
 
 
 **Bardo:**
 
-Começa com uma 
+Começa com uma 250
 
-No nível 9 da Torre ele ganha 
+No nível 9 da Torre ele fica com 350 de vida
 
 
 ### **Estatísticas dos monstros:**
@@ -155,42 +155,42 @@ No nível 9 da Torre ele ganha
 
 **Fantasma da andiedade - andar 1**
 
- Vida: 25 pts
+ Vida: 45 pts
 
  Ataque: d6
 
 
 **Zumbi estudante - andar 2**
 
- Vida: 35 pts
+ Vida: 55 pts
 
  Ataque: d8
 
 
 **Esqueleto ritalinado - andar 3**
 
- Vida: 35 pts 
+ Vida: 65 pts 
  
  Ataque: d8
 
 
 **Calculo I - andar 4**
 
- Vida: 45 pts
+ Vida: 70 pts
 
  Ataque: d10
 
 
 **Fim de semestre - andar 5**
 
- Vida: 60 pts
+ Vida: 80 pts
 
  Ataque: d12 
 
 
 **Cérbero Caramelo - andar 6**
 
- Vida: 75 pts
+ Vida: 95 pts
 
  Ataque: d16
 
@@ -224,6 +224,7 @@ Além disso, em nosso trabalho, tivemos uma ideia inicial sobre como o jogo seri
 - Ao se defender, o ataque do inimigo diminui e a defesa “reflete” o ataque, fazendo o inimigo tomar o mesmo dano que você
 - Os ataques dos jogadores são feitos apenas de uma arma ou magia definida (mudando  no nível 9)
 - Agora os heróis apresentam vidas e ataques diferentes, dando uma idéia de níveis de dificuldade
+- Agora há uma chance aleatória de se errar um ataque, que seria uma falha crítica
 - Mudança em alguns nomes de vilões, para fazer mais referências à UFMG
 - A poção de dano aumenta o dano até o final do jogo em uma pequena quantidade
 - Mudanças nas classes presentes do jogo, a fim de simplifica-las, ainda seguindo as boas práticas do POO.
