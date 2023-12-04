@@ -1,1 +1,0 @@
-//Lugar onde as funcoes de heroi estarao localizados

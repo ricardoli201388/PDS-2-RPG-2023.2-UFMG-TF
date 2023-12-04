@@ -1,1 +1,0 @@
-//Lugar onde os cabecalhos das funcoes de batalha estarao localizados
