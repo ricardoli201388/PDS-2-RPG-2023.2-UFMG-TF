@@ -5,223 +5,318 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include "player.hpp"
+#include "enemy.hpp"
+#include "inventario.hpp"
+#include "funcionalidades.hpp"
+#include "batalha.hpp"
+#include "escolha.hpp"
+
 // Use esse no Linux:
-//#include <ncurses.h>
-// Comando para compilação no Linux: g++ -std=c++17 main.cpp -o (nome) -lncurses
-// Comando para executar: ./(nome)
-//Use esse para Windows:
-#include <ncurses/ncurses.h>
-// Comando para compilação no windows: g++ main.cpp -o test.exe -lncurses -DNCURSES_STATIC 
-// Comando para executar: teste.exe
+#include <ncurses.h>
+
+
 
 using namespace std;
 
-class Player {
-public:
-    string name;
-    int health;
-    int attack;
-    int potionCount;
-    int level;
-    bool defending;
-
-    Player(string n, int h, int a) : name(n), health(h), attack(a), potionCount(3), level(1), defending(false) {}
-};
-
-class Enemy {
-public:
-    string name;
-    int health;
-    int attack;
-
-    Enemy(string n, int h, int a) : name(n), health(h), attack(a) {}
-};
-
-bool getRandomBool(double probability) {
-    return (rand() / static_cast<double>(RAND_MAX)) < probability;
-}
-
-void printStatus(Player& player, Enemy& enemy) {
-    clear();
-
-    // Imprime a caixa de menu
-    box(stdscr, 0, 0);
-    mvprintw(1, 1, " Jogo RPG - HP de %s: %d  HP de %s: %d", player.name.c_str(), player.health, enemy.name.c_str(), enemy.health);
-
-    // Imprime o avatar do herói
-    mvprintw(3, 1, "Herói: ");
-    attron(A_BOLD);
-    mvprintw(3, 7, R"(
-   ,   A           {}
-  / \, | ,        .--.
- |    =|= >      /.--.\
-  \ /` | `       |====|
-   `   |         |`::`|  
-       |     .-;`\..../`;_.-^-._
-      /\\/  /  |...::..|`   :   `|
-      |:'\ |   /'''::''|   .:.   |
-       \ /\;-,/\   ::  |..:::::..|
-       |\ <` >  >._::_.| ':::::' |
-       | `""`  /   ^^  |   ':'   |
-    )"); 
-
-    attroff(A_BOLD);
-
-    // Imprime o conteúdo do jogo
-    mvprintw(14, 1, "Escolha uma ação (a = atacar, d = defender, u = usar poção): ");
-    refresh();
-}
-
-void getPlayerName(string& playerName) {
-    mvprintw(8, 1, "Digite o nome do jogador: ");
-    refresh();
-    char buffer[50];
-    int i = 0;
-    while (true) {
-        int ch = getch();
-
-        if (ch == '\n' || ch == '\r') {
-            buffer[i] = '\0';
-            break;
-        } else if (ch == 127 && i > 0) {
-            buffer[--i] = '\0';
-        } else if (i < 49) {
-            buffer[i++] = ch;
-            buffer[i] = '\0';
-        }
-
-        clear();
-        // Imprime a caixa de menu
-        box(stdscr, 0, 0);
-        mvprintw(1, 1, " Jogo RPG - Digite o nome do jogador: %s", buffer);
-        refresh();
-    }
-    playerName = buffer;
-}
-
-void playerTurn(Player& player, Enemy& enemy) {
-    printStatus(player, enemy);
-
-    char action = getch();
-
-    if (action == 'a') {
-        int dano = player.attack;
-        if (getRandomBool(0.2)) {
-            dano *= 2;
-            mvprintw(16, 1, "Golpe Crítico! Você atacou %s e causou %d de dano!", enemy.name.c_str(), dano);
-        } else {
-            enemy.health -= dano;
-            mvprintw(16, 1, "Você atacou %s e causou %d de dano!", enemy.name.c_str(), dano);
-        }
-    } else if (action == 'd') {
-        player.defending = true;
-        mvprintw(16, 1, "Você está se defendendo dos ataques de %s.", enemy.name.c_str());
-    } else if (action == 'u') {
-        if (player.potionCount > 0) {
-            int cura = 50;
-            player.health += cura;
-            player.potionCount--;
-            mvprintw(16, 1, "Você usou uma poção e recuperou %d de HP. Poções restantes: %d", cura, player.potionCount);
-        } else {
-            mvprintw(16, 1, "Você não tem mais poções!");
-        }
-    } else {
-        mvprintw(16, 1, "Ação inválida. Tente novamente.");
-        refresh();
-        return;
-    }
-    mvprintw(17, 1, "Pressione qualquer tecla para continuar...");
-    getch();
-    refresh();
-}
-
-void enemyTurn(Player& player, Enemy& enemy) {
-    if (player.health > 0) {
-        int dano = enemy.attack;
-        if (player.defending) {
-            dano /= 2;
-        }
-        player.health -= dano;
-        mvprintw(18, 1, "%s atacou você e causou %d de dano!", enemy.name.c_str(), dano);
-        mvprintw(19, 1, "Pressione qualquer tecla para continuar...");
-        getch();
-    }
-    refresh();
-}
-
-void levelUp(Player& player) {
-    player.level++;
-    player.attack += 5;
-    mvprintw(16, 1, "Parabéns! Você subiu para o nível %d!", player.level);
-    mvprintw(17, 1, "Pressione qualquer tecla para continuar...");
-    getch();
-    refresh();
-}
-
-void battle(Player& player, Enemy& enemy) {
-    mvprintw(16, 1, "Você está em batalha com %s!", enemy.name.c_str());
-    refresh();
-
-    while (player.health > 0 && enemy.health > 0) {
-        playerTurn(player, enemy);
-        if (enemy.health <= 0) {
-            mvprintw(16, 1, "Você derrotou %s. Parabéns!", enemy.name.c_str());
-            if (player.health > 0 && player.level < 3) {
-                levelUp(player);
-            }
-            break;
-        }
-
-        enemyTurn(player, enemy);
-        if (player.health <= 0) {
-            mvprintw(16, 1, "Você foi derrotado por %s. Fim de Jogo!", enemy.name.c_str());
-            break;
-        }
-    }
-}
-
-
-
 int main() {
+   
+    // Inicialização do ambiente ncurses
     initscr();
     raw();
     keypad(stdscr, TRUE);
     noecho();
+    box(stdscr, 0, 0);
 
-    mvprintw(1, 1, " RPG Game - Torre UFMG!");
+// Mensagem de início do jogo
+    mvprintw(1, 50, R"(
+                    ####################################################################
+                    #    _      _____                     ___            _       _ _   #
+                    #   / \    |_   _|__  _ __ _ __ ___  |_ _|_ __   ___(_)_ __ (_) |_ #
+                    #  / _ \     | |/ _ \| '__| '__/ _ \  | || '_ \ / __| | '_ \| | __|#
+                    # / ___ \    | | (_) | |  | | |  __/  | || | | | (__| | |_) | | |_ #
+                    #/_/   \_\_ _|_|\___/|_|  |_|  \___| |___|_| |_|\___|_| .__/|_|\__|#
+                    #\ \   / (_) |_ __ _  | \ | | _____   ____ _          |_|          #
+                    # \ \ / /| | __/ _` | |  \| |/ _ \ \ / / _` |                      #
+                    #  \ V / | | || (_| | | |\  | (_) \ V / (_| |                      #
+                    #   \_/  |_|\__\__,_| |_| \_|\___/ \_/ \__,_|                      #
+                    ####################################################################
 
-    string playerName;
-    getPlayerName(playerName);
+                        `,.      .   .        *   .    .      .  _    ..          .
+                        \,~-.         *           .    .       ))       *    .
+                            \ *          .   .   |    *  . .  ~    .      .  .  ,
+                    ,          `-.  .            :               *           ,-
+                    -             `-.        *._/_\_.       .       .   ,-'
+                    -                 `-_.,     |n|     .      .       ;
+                        -                  \ ._/_,_\_.  .          . ,'         ,
+                        -                   `-.|.n.|      .   ,-.__,'         -
+                        -                   ._/_,_,_\_.    ,-'              -
+                        -                     |..n..|-`'-'                -
+                        -                  ._/_,_,_,_\_.                 -
+                            -              ,-|...n...|                  -
+                            -          ,-'._/_,_,_,_,_\_.              -
+                               -  ,-=-'     |....n....|              -
+                                -;       ._/_,_,_,_,_,_\_.         -
+                               ,-          |.....n.....|          -
+                             ,;         ._/_,_,_,_,_,_,_\_.         -
+                                          |     UFMG    |
+                    `,  '.  `.  ".  `,  '.| n   ,-.   n |  ",  `.  `,  '.  `,  ',
+                  ,.:;..;;..;;.,:;,.;:,o__|__o !.|.! o__|__o;,.:;.,;;,,:;,.:;,;;:
+                    [  ][  ][  ][  ][  |_i_i_H_|_|_|_H_i_i_|  ][  ][  ][  ][  ][
+                                       |     //=====\\     |
+                                       |____//=======\\____|
+                                           //=========\\
 
-    Player player(playerName, 200, 20);
-    Enemy enemy("Enemy", 80, 15);
+                        )");
 
-    mvprintw(3, 1, "Voce entrou num mundo de aventuras!");
 
+// Obter o nome do jogador
+string playerName;
+getPlayerName(playerName);
+Player player("", 0, 0, '1'); // Inicializa um jogador vazio
+Enemy enemy("Fantasma da Ansiedade", 45, 6);
+selectCharacter(player); // Obtém a escolha do personagem
+player.name = playerName; // Define o nome do jogador
+
+// Mensagem introdutória
+clear();
+mvprintw(1, 1, "Uma noite, depois de um longo dia, %s se encontra na famosa taverna Kabraoos para ", player.name.c_str());
+mvprintw(2, 1, "se deliciar com uma cerveja barata e um ambiente caloroso numa costumeira quinta-feira.");
+mvprintw(3, 1, "Então, para sua surpresa, recebe um pombo correio de seu instrutor Luigi, dizendo:");
+mvprintw(4, 1, "Caro aprendiz, percebo que avançou esses anos todos cumprindo da melhor forma possível suas tarefas na UFMG, ");
+mvprintw(5, 1, "vulgo Universidade Fantastica de Magia e Guerra, porém agora tenho um ultimo desafio.");
+mvprintw(6, 1, "Por séculos, os alunos da UFMG, assim como outras universidades, ");
+mvprintw(7, 1, "sao desafiados a enfrentarem a TCC, Torre de Conclusão de Curso, ");
+mvprintw(8, 1, "na qual provam seu valor e podem demonstrar tudo que foi aprendido nas aulas, treinos e provas.");
+mvprintw(9, 1, "Amanha, você deverá seguir viagem para a Torre de Incipit Vita Nova, lugar onde enfrentará inúmeros inimigos por toda extensao da mesma. ");
+mvprintw(10, 1, "Estarei te esperando na torre para lhe dar instruções, boa viagem!");
+mvprintw(11, 1, "------------------------------------------------------------------------");
+mvprintw(12, 1, "E assim, você segue uma árdua viagem até a temida Torre de Conclusão de Curso. ");
+mvprintw(13, 1, "Depois de alguns dias, finalmente vê o altivo portão de madeira de lei e, ao se aproximar, ");
+mvprintw(14, 1, "o mesmo abre e é possível ver seu instrutor Luigi o esperando lá dentro.");
+mvprintw(15, 1, "-------------------------------------------------------------------------");
+mvprintw(16, 1, "- Finalmente chegou! Imagino que a viagem tenha sido cansativa...");
+mvprintw(17, 1, "- Estamos no primeiro andar da torre, onde vou explicar mais sobre como seu teste funcionará. ");
+mvprintw(18, 1, "Cada andar apresenta um inimigo que deverá ser derrotado para seguir em frente.");
+mvprintw(19, 1, "- Em alguns andares, você poderá receber itens ao derrotar os monstros, como uma poção de cura e uma poção de dano.");
+mvprintw(20, 1, "- Além disso, no decorrer do jogo, voce podera melhorar seu ataque e sua vida total!");
+mvprintw(21, 1, "- No seu turno, você pode escolher usar algum item ou então atacar. Para usar um item, digite (u), para atacar digite (a).");
+mvprintw(22, 1, "- Assim que escolher uma dessas opções, outras vão aparecer, ");
+mvprintw(23, 1, "cada uma com a respectiva letra que deverá ser digitada para se escolher um item e realizar a ação.");
+mvprintw(24, 1, "- Não se esqueça de dar enter para concluir sua ação e seguir o jogo!");
+mvprintw(25, 1, "- Acredito que seja isso... E se lembre, o último andar é guardado por um monstro terrível! ");
+mvprintw(26, 1, "Ao derrotá-lo, poderá ficar com seu tesouro e terá completado com sucesso essa Torre. Boa sorte e bom jogo!");
+
+mvprintw(29, 1, "Pressione enter para prosseguir...");
+mvprintw(30, 1, R"(
+                                 _______________
+                            ()==(              (@==()
+                                '______________'|
+                                  |             |
+                                  |             |
+                                __)_____________|
+                            ()==(               (@==()
+                                 '--------------'
+)");
+refresh();
+getch(); // Aguarda a tecla Enter
+
+
+// Inicialização do jogador e inimigo
+    Inventario inventario; // Cria o inventário do jogador
+
+
+// Mensagem de entrada no mundo de aventuras
+    refresh();
+    mvprintw(45, 1, "Voce entrou num mundo de aventuras!");
+
+
+// Semente para gerar números aleatórios
     srand(time(0));
 
-    while (player.health > 0 && player.level < 3) {
-        battle(player, enemy);
+int currentLevel; // Nível inicial do jogador
 
-        if (player.health > 0 && player.level < 3) {
-            mvprintw(15, 1, "Voce prepara para proxima batalha!");
-            refresh();
-            string enemyNames[] = { "Orc", "Dragon", "Skeleton" };
-            string randomEnemyName = enemyNames[rand() % 3];
-            int randomEnemyHealth = rand() % 100 + 50;
-            int randomEnemyAttack = rand() % 20 + 10;
 
-            enemy = Enemy(randomEnemyName, randomEnemyHealth, randomEnemyAttack);
 
-            mvprintw(15, 1, "Voce encontra um %s!", enemy.name.c_str());
-            refresh();
-        }
-    }
+// Loop principal do jogo enquanto o jogador está vivo e não atingiu o nível máximo
+while (player.health > 0 && player.level < 10) {
+       
+        // Lógica das batalhas
+        battle(player, enemy, inventario); // Passando o nível atual para a função battle
 
-    if (player.level == 3) {
-        mvprintw(16, 1, "Parabens! Voce atingiu o nivel maximo e completou o jogo!");
+        // Lógica de uso do inventário
+        playerTurn(player, enemy, inventario);
+
+        // Lógica para preparar para a próxima batalha
+            if (player.health > 0 && player.level < 10) {
+                    mvprintw(22, 1, "Você se prepara para a batalha!");
+                    refresh();
+                    currentLevel = player.level;
+                    // Definindo inimigos específicos para cada nível
+                    string enemyName;
+                    int enemyHealth, enemyAttack;
+
+                    switch (currentLevel) {      
+                        case 2:
+                            enemyName = "Zumbi Estudante";
+                            enemyHealth = 55;
+                            enemyAttack = 8;
+                            break;
+                        case 3:
+                            enemyName = "Esqueleto Ritalinado";
+                            enemyHealth = 65;
+                            enemyAttack = 8;
+                            break;
+                        case 4:
+                            enemyName = "Cálculo I";
+                            enemyHealth = 70;
+                            enemyAttack = 10;
+                            break;
+                        case 5:
+                            enemyName = "Final de semestre";
+                            enemyHealth = 80;
+                            enemyAttack = 12;
+                            break;
+                        case 6:
+                            enemyName = "Cérbero Caramelo";
+                            enemyHealth = 95;
+                            enemyAttack = 16;
+                            break;
+                        case 7:
+                            enemyName = "Grifo";
+                            enemyHealth = 105;
+                            enemyAttack = 16;
+                            break;
+                        case 8:
+                            enemyName = "Cálculo II ";
+                            enemyHealth = 135;
+                            enemyAttack = 12;
+                            break;
+                        case 9:
+                            enemyName = "Bender: O controlador";
+                            enemyHealth = 250;
+                            enemyAttack = 40;
+                            break;
+
+                    }
+
+                    // Criando o inimigo com base nos parâmetros definidos para o nível atual
+                    enemy = Enemy(enemyName, enemyHealth, enemyAttack);
+
+                    // Mensagem sobre o encontro do jogador com o novo inimigo
+                    mvprintw(15, 1, "Você encontrou um %s!", enemy.name.c_str());
+                    refresh();
+                    }
+                        
+                            refresh();
+                            ganharPocao(player, inventario);
+
+    
+                        
+                        
+                        refresh();
+
+
+            }
+
+
+
+// Mensagem final do jogo dependendo do resultado
+    if (player.level == 10) {
+        clear();
+        mvprintw(2, 1, "Wooooow, parabéns!");
+        mvprintw(3, 1, "Você matou o Dragão e completou a TCC! Pode ficar com o tesouro, você merece :D");
+        mvprintw(4, 1, R"(
+*******************************************************************************
+          |                   |                  |                     |       
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |                   
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |       
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |                   
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |       
+ _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |                   
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/______/_
+*******************************************************************************
+)");
+        mvprintw(28, 1, "Tesouro: Um diploma da UFMG e 1000 moedas de ouro!");
+        mvprintw(29, 1, "Agora você finalmente completou seu desafio e concluiu a Universidade");
+        mvprintw(30, 1, "Fantástica de Magia e Guerra. Você é um herói que provou poder seguir");
+        mvprintw(31, 1, "aventuras mais desafiadoras e cansativas, como arrumar uma guilda para se");
+        mvprintw(32, 1, "afiliar. Tenho certeza que seu futuro será brilhante pela frente!");
+        mvprintw(35, 1, "(pressione enter para finalizar)");
+
+getch(); // Aguarda a tecla Enter
+
+
+clear();
+        mvprintw(10, 1, "Obrigado por jogar!");
+        mvprintw(11, 1, "FIM");
+        mvprintw(35, 1, "(pressione enter para finalizar)");
+
+getch(); // Aguarda a tecla Enter
+
+clear();
+        mvprintw(10, 1, "Créditos:");
+        mvprintw(11, 1, "Arthur Augusto Paiva Lemos");
+        mvprintw(12, 1, "Filipe Henrique Nunes");
+        mvprintw(13, 1, "Luísa Canielo de Carvalho");
+        mvprintw(14, 1, "Ricardo Jianhong Li");
+        mvprintw(15, 1, "Thales Eduardo de Castro Andrade");
+        mvprintw(35, 1, "(pressione enter para finalizar)");
+
+getch(); // Aguarda a tecla Enter
+
     } else {
-        mvprintw(16, 1, "Game Over!");
+clear();       
+
+        mvprintw(5, 1, "Ah não… Parece que você morreu! ;-;");
+        
+        mvprintw(8, 1, "A banca do TCC se reuniu e decidiu que voce nao e DIGNO!");
+        mvprintw(10, 1, R"(
+             *********
+           *************
+          *****     *****
+         ***           ***
+        ***             ***
+        **    0     0    **
+        **               **                  ____
+        ***             ***             //////////
+        ****           ****        ///////////////  
+        *****         *****    ///////////////////
+        ******       ******/////////         |  |
+      *********     ****//////               |  |
+   *************   **/////*****              |  |
+  *************** **///***********          *|  |*
+ ************************************    ****| <=>*
+*********************************************|<===>* 
+*********************************************| <==>*
+***************************** ***************| <=>*
+******************************* *************|  |*
+********************************** **********|  |*   
+*********************************** *********| 
+
+)");
+
+
+
+
+        mvprintw(35, 1, "(pressione enter para finalizar)");
+
+
+
+getch(); // Aguarda a tecla Enter  
+
+main();
     }
 
     refresh();
@@ -229,6 +324,4 @@ int main() {
     endwin();
 
     return 0;
-}
-
-
+}          

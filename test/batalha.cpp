@@ -18,13 +18,14 @@ void playerTurn(Player& player, Enemy& enemy, Inventario& inventario) {
     printStatus(player, enemy, inventario); // Mostra o status do jogador e inimigo na tela
 
     char action = getch(); // Obtém a ação escolhida pelo jogador
-   
-   
     // Verifica a ação escolhida e executa a ação correspondente
+
+
     if (action == 'a') {// Ataque
         int dano = player.attack;   // Dano base do jogador
-        if (getRandomBool(0.3)) {   // Verifica se houve uma falha crítica (golpe errado - 20% de chance)
-            mvprintw(23, 1, "EEeerrooouuuu! Você não causou dano!"); // Exibe mensagem de erro crítico
+        if (getRandomBool(0.2)) {   // Verifica se houve um golpe crítico (20% de chance)
+            dano *= 2;              // Dano dobrado em caso de golpe crítico
+            mvprintw(23, 1, "Golpe Crítico! Você atacou %s e causou %d de dano!", enemy.name.c_str(), dano); // Exibe mensagem de golpe crítico
         } else {
             enemy.health -= dano;// Reduz a saúde do inimigo pelo dano
             mvprintw(23, 1, "Você atacou %s e causou %d de dano!", enemy.name.c_str(),dano);
@@ -37,9 +38,10 @@ void playerTurn(Player& player, Enemy& enemy, Inventario& inventario) {
       
 
  } else if (action == 'u') { // Uso de itens do inventário
-        mvprintw(22, 1, "Escolha um item: (c) café da cura     (p) pão de queijo do dano) ");
-       
+        mvprintw(22, 1, "Escolha um item: (c) poção de cura     (p) poção de dano) ");
+        //refresh();
         char itemAction = getch();
+
 
         switch (itemAction) {
            
@@ -52,7 +54,6 @@ void playerTurn(Player& player, Enemy& enemy, Inventario& inventario) {
             default:
                 mvprintw(23, 1, "Item inválido. Tente novamente.");
                 refresh();
-                getch();// Aguarda entrada do usuário
                 playerTurn(player, enemy, inventario);
                 break;
         }
@@ -61,7 +62,6 @@ void playerTurn(Player& player, Enemy& enemy, Inventario& inventario) {
     } else {
         mvprintw(23, 1, "Ação inválida. Tente novamente."); // Mensagem para ação inválida
         refresh();
-        getch();// Aguarda entrada do usuário
         playerTurn(player,enemy,inventario);
     }
     mvprintw(30, 1, "Pressione qualquer tecla para continuar...");// Mensagem para continuar
@@ -76,7 +76,7 @@ void enemyTurn(Player& player, Enemy& enemy) {
     if (player.health > 1) {  // Verifica se o jogador ainda está vivo
         int dano = enemy.attack; // Dano base do inimigo
         if (player.defending) { // Verifica se o jogador está defendendo
-            dano /= 4; // Reduz pela quarta parte do dano se o jogador está defendendo
+            dano /= 4; // Reduz o dano pela metade se o jogador está defendendo
             enemy.health -= dano;
         mvprintw(24, 1, "O ataque refletiu e causou dano de %d  no %s", dano, enemy.name.c_str());// Exibe mensagem de ataque
         
@@ -95,7 +95,12 @@ void enemyTurn(Player& player, Enemy& enemy) {
 
 // Função que representa a batalha entre o jogador e o inimigo
 void battle(Player& player, Enemy& enemy, Inventario& inventario){
-  
+
+    
+    mvprintw(22, 1, "Você está em batalha com %s!", enemy.name.c_str());// Mensagem de início de batalha
+    refresh();// Atualiza a tela
+    
+
     while (player.health > 0 && enemy.health > 0) { // Enquanto ambos (jogador e inimigo) estiverem vivos
        playerTurn(player, enemy, inventario);// Vez do jogador
         if (enemy.health <= 0) {// Se o inimigo estiver derrotado
@@ -116,19 +121,17 @@ void battle(Player& player, Enemy& enemy, Inventario& inventario){
     if (player.health <= 0) player.health = 0;
 }
 
-
-// Função para ganhar itens
     void ganharPocao(Player& player,Inventario& inventario){
         if(player.level== 3 ||player.level==  7 ){
 
             inventario.curaCount++;
-            mvprintw(34, 1, "Você ganhou um café da cura");// Exibe mensagem de evolução de nível
+            mvprintw(34, 1, "Você ganhou uma pocao de cura");// Exibe mensagem de evolução de nível
             refresh();
         }
         if(player.level== 5 ||player.level== 9){
 
             inventario.danoCount++;
-            mvprintw(34, 1, "Você ganhou um pão de queijo do dano");// Exibe mensagem de evolução de nível
+            mvprintw(34, 1, "Você ganhou uma pocao de dano");// Exibe mensagem de evolução de nível
             refresh();
         }
     }

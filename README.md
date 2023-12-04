@@ -1,251 +1,201 @@
 # PDS-2-RPG-2023.2-UFMG-TF
-> Grupo 3 - Trabalho da disciplina PDS2 UFMG 2023/2
+Trabalho da disciplina PDS2 UFMG 2023/2
 
-## Visão Geral 
+História do RPG: A Torre de Incipit Vita Nova
 
-O projeto pensado pelo grupo 3 é um jogo de rpg baseado na UFMG, contendo 5 tipos de personagens que representam algumas áreas do conhecimento da universidade e uma história que tenta aproximar uma realidade fantasiosa e medieval para o dia a dia de um estudante universitário. 
+- 5 classes - inventor, mago, bardo, druida e bárbaro - representam cada escola da ufmg
 
-A história é baseada em um aluno que já está no final de seu curso na Universidade Fantástica de Magia e Guerra e que recebe uma carta de um de seus instrutores, na qual, o mesmo comenta sobre o TCC, um temido desafio para qualquer estudante da vida real, mas que no jogo aparece como uma torre de desafios, fazendo essa metáfora com a realidade e representando como o estudante se sente ao chegar nesse ponto final da universidade.
-Na Torre de Conclusão de Curso, haverá 9 andares com monstros, sendo o décimo andar guardado por um terrível monstro que se encontra nesse nono andar. 
+- Sempre haverá ataques, porém o dano estará dentro de uma range bem estabelecida e será aleatório, para ambos os lados. 
 
-O jogo apresenta dinâmicas simples, porém divertidas, voltadas para trazer uma jogabilidade descontraída e mais simples, sendo um clássico jogo para se passar o tempo e relaxar, entretanto apresentando certos níveis de dificuldade em cada tipo de personagem, fazendo com que o jogador queira jogar com todos os personagens. Os inimigos foram pensados nas nossas dificuldades que tivemos, não só com o nosso curso, mas também num âmbito geral da mudança de realidade que tivemos nesse primeiro ano estudando.
+- As ranges do ataque estão descritos como dX (dano X), no qual X é o valor máximo de dano e essa range começa do número 1 e vai até esse X.
 
-## História do RPG
+**A história é a seguinte, o jogador escolhe o tipo do herói e vem um texto:**
 
-### **Jogo: A torre de Incipit Vita Nova**
-
-5 classes - inventor, mago, bardo, druida e bárbaro - representam cada escola da ufmg
-
-O jogador escolhe a customização do herói com a escola de preferência e vem um texto:
-
-*"Uma noite, depois de um longo dia, (nome do personagem) se encontra na famosa taverna K’abraoos para se deliciar com uma cerveja barata e um ambiente caloroso numa costumeira quinta-feira. Então, para sua surpresa, recebe um pombo correio de seu instrutor, dizendo: Caro aprendiz, percebo que avançou esses anos todos cumprindo da melhor forma possível suas tarefas na UFMG, vulgo Universidade Fantástica de Magia e Guerra, porém agora tenho um último desafio. Por séculos, os alunos da UFMG, assim como outras universidades, são desafiados a enfrentarem a TCC, Torre de Conclusão de Curso, na qual provam seu valor e podem demonstrar tudo que foi aprendido nas aulas, treinos e provas. Amanhã, você deverá seguir viagem para a Torre de Incipit Vita Nova, lugar onde enfrentará inúmeros inimigos por toda extensão da mesma. Estarei te esperando na torre para lhe dar instruções, boa viagem!"*
+Uma noite, depois de um longo dia, (nome do personagem) se encontra na famosa taverna Ka'braoos para se deliciar com uma cerveja barata e um ambiente caloroso numa costumeira quinta-feira. Então, para sua surpresa, recebe um pombo correio de seu instrutor Luigi, dizendo: Caro aprendiz, percebo que avançou esses anos todos cumprindo da melhor forma possível suas tarefas na UFMG, vulgo Universidade Fantástica de Magia e Guerra, porém agora tenho um último desafio. Por séculos, os alunos da UFMG, assim como outras universidades, são desafiados a enfrentarem a TCC, Torre de Conclusão de Curso, na qual provam seu valor e podem demonstrar tudo que foi aprendido nas aulas, treinos e provas. Amanhã, você deverá seguir viagem para a Torre de Incipit Vita Nova, lugar onde enfrentará inúmeros inimigos por toda extensão da mesma. Estarei te esperando na torre para lhe dar instruções, boa viagem!
 
 Depois de algumas semanas de viagem, você finalmente chega na torre. 
 
-### **Torre de Conclusão de Curso:**
-
 **A torre vai ter 10 andares e em cada andar terão inimigos**
 
-1° andar - andar com fantasma da ansiedade
+1° andar - andar teste para aprender como jogar com o instrutor
 
-2° andar - andar com zumbi estudante
+2° andar - andar com slimes
 
-3° andar - andar com esqueleto ritalinado
+3° andar - andar com esqueletos 
 
-4° andar - andar com cálculo I
+4° andar - andar com zumbi
 
-5° andar - andar com final de semestre
+5° andar - andar com basilisco (bebê)
 
-6° andar - andar com cérbero caramelo
+6° andar - andar com slime grande
 
-7° andar - andar com grifo
+7° andar - andar com esqueletos de armadura
 
-8° andar - andar com cálculo II
+8° andar - andar com zumbis soldados
 
-9° andar - andar com bender: o controlador
+9° andar - andar com basilisco (mãe)
 
-10º andar - andar onde o tesouro está guardado e é o fim do jogo
+10° andar - andar com dragão
 
-**Cada andar:**
+Nesse andar vai ter o tesouro do dragão, que será um diploma, e acaba aí :)
 
-- Assim que o herói passar dos andares 2 e 6 ele ganhará uma poção de cura
+*Cada classe:*
 
-- Assim que o herói passar dos andares 4 e 8 ele ganhará uma poção de dano
+Nos andares 5 e 9 os heróis vão upar a vida e receber itens/magias
 
-- Assim que o herói passar o andar 8 ele tem seu ataque melhorado
+- Pessoal mágico - Mais magias (Mago e Bardo)
 
-### **Itens:**
+- Pessoal de perto - armas (Bárbaro)
 
-- Poção de cura (restaura parte da vida)
+- Misto - Magia e armas (Inventor e Druida)
 
-- Poção de dano (aumenta o dano total)
+*5 classes - inventor, mago, bardo, druida e bárbaro*
 
-Tesouro do dragão - Ganham o diploma e 1000 moedas de ouro!
+- Inventor: teve de aprender magias puras e a construir geringonças incríveis, nesse caminho enfrentou várias aventuras difíceis, tais como Cálculo e Física, quase desistindo do curso e repensando suas escolhas diversas vezes.
 
+- Druida: sempre amou a natureza e continua gostando dela, mesmo tendo que gravar diversas vezes nomes em línguas obscuras como abissal e latim e entender cada célula de cada ser vivo existente.
 
-### **5 classes - inventor, mago, bardo, druida e bárbaro**
+- Bardo: ama a música e as artes, sempre tentando trazer à tona sentimentos ocultos das pessoas, mesmo que tenha diversas crises e bloqueios criativos, sempre se perguntando em quem faz o palhaço rir.
 
-**Inventor**: teve de aprender magias puras e a construir geringonças incríveis, nesse caminho enfrentou várias aventuras difíceis, tais como Cálculo e Física, quase desistindo do curso e repensando suas escolhas diversas vezes.
+- Mago: sempre se interessou pelas coisas ao seu redor, fazendo perguntas complexas e tentando entender a realidade, porém, muitas vezes, quando vai ler, se percebe preso em uma página, pois o autor quis dificultar sua vida.
 
+- Bárbaro: muito forte e sempre energético, sabe muito bem como elaborar ótimos treinos, porém muitas vezes se surpreende com as inúmeras matérias que tem durante o dia, além de questionar porque seu curso é uma mistura de biologia com humanas. 
 
-**Druida**: sempre amou a natureza e continua gostando dela, mesmo tendo que gravar diversas vezes nomes em línguas obscuras como abissal e latim e entender cada célula de cada ser vivo existente.
+*Itens:*
 
+Ao final dos andares pares antes de 10 é possível ganhar esses itens de forma aleatória:
 
-**Bardo**: ama a música e as artes, sempre tentando trazer à tona sentimentos ocultos das pessoas, mesmo que tenha diversas crises e bloqueios criativos, sempre se perguntando em quem faz o palhaço rir.
+- Poção de cura (restaura a vida) - restaura 40% da vida total
 
+- Poção de dano (acertar valores maiores de dano) - Aumenta em 20% o dano
 
-**Mago**: sempre se interessou pelas coisas ao seu redor, fazendo perguntas complexas e tentando entender a realidade, porém, muitas vezes, quando vai ler, se percebe preso em uma página, pois o autor quis dificultar sua vida.
-
-
-**Bárbaro**: muito forte e sempre energético, sabe muito bem como elaborar ótimos treinos, porém muitas vezes se surpreende com as inúmeras matérias que tem durante o dia, além de questionar porque seu curso é uma mistura de biologia com humanas. 
-
-### **Ataques:**
+- Ou escudo (bloqueia 1 ataque) - o inimigo não acerta você
 
 **Bárbaro:**
 
-Começa com um  Machado de Prata - 
+Começa com um Machado de Cobre - d12
 
-No nível 9 da Torre ele ganha um Machado de Ouro - 
+No nível 5 da Torre ele ganha um Machado de Prata - d24
+
+No nível 9 da Torre ele ganha um Machado de Ouro - d48
 
 **Inventor**
 
-Começa com uma Chave inglesa polida - 
+*Arma:*
 
-No nível 9 ele ganha uma Chave inglesa reluzente - 
+Começa com uma Chave inglesa enferrujada - d8
+
+No nível 5 da Torre ele ganha um Chave inglesa polida - d10
+
+No nível 9 ele ganha uma Chave inglesa reluzente - d20
+
+*Magia:*
+
+Começa com 1 magia - Raio Chocante d6 (essa magia é infinita)
+
+No nível 5 da Torre ele ganha mais uma magia - Engrenagens Magicas d12 (essa magia pode ser usada 2 vezes)
+
+No nível 9 da Torre ele ganha mais uma magia - Algoritmo ancestral d24 (Pode ser usado 1 vez)
 
 **Druida**
 
-Começa com uma Rapieira de Quatzo - 
+*Arma:*
 
-No nível 9 da Torre ele ganha uma Rapiera de Obsidiana - 
+Começa com uma Rapieira de Pedra - d8
+
+No nível 5 da Torre ele ganha uma Rapieira de Quatzo - d10
+
+No nível 9 da Torre ele ganha uma Rapiera de Obsidiana - d20
+
+*Magia:*
+
+Começa com 1 magia - Raio Ácido d6 (essa magia é infinita)
+
+No nível 5 da Torre ele ganha mais uma magia - Vinhas Cortantes d12 (essa magia pode ser usada 2 vezes)
+
+No nível 9 da Torre ele ganha mais uma magia - Garras Amaldiçoadas d24 (Pode ser usado 1 vez)
 
 **Mago**
 
-Começa com uma Ventos uivantes - 
+Começa o jogo com 2 magias - Projétil Verde d8 e Raio de Gelo d6 (essas magias são infinitas)
 
-No nível 9 da Torre ele ganha Bola de Fogo - 
+No nível 5 da Torre ele ganha mais 2 magias - Ventos uivantes d10 e Choque Avassalador d16 (essas magias podem ser usadas 2 vezes)
+
+No nível 9 da Torre ele ganha mais 1 magia - Bola de Fogo d48 (Pode ser usada 1 vez )
 
 **Bardo**
 
-Começa com uma Poema Ofensivo - 
+Começa o jogo com 2 magias - Notas falhas d6 e Poema ofensivo d8 (essas magias são infinitas)
 
-No nível 9 da Torre ele ganha Dança Forçada - 
+No nível 5 da Torre ele ganha mais 2 magias - Spray colorido d10 e Canção do Terror d16 (essas magias podem ser usadas 2 vezes)
 
+No nível 9 da Torre ele ganha mais 1 magia - Dança Forçada d48 (Pode ser usada 1 vez )
 
-### **Estatísticas dos personagens:**
+*Estatísticas dos personagens:*
 
-Para trazer uma jogabilidade diferente, pensamos em aplicar diferentes estatísticas para os diferentes tipos de herói, fazendo com que haja níveis de dificuldades para o jogador escolher.
+ Vida: 50 de vida
+ 
+ Andar 5 ganha - Restaura a vida e ela aumenta em 50 pts - 100 pts de vida
+ 
+ Andar 9 ganha - Restaura a vida e ela aumenta em 50 pts - 150 pts
 
-**Bárbaro:**
+*Estatísticas e andares dos monstros:*
 
-Começa com 
-No nível 9 da Torre ele ganha 
+ **Andar 1**
 
+ Apenas um andar instrodutório, com um pequeno tutorial
 
-**Inventor:**
-
-Começa com 
-
-No nível 9 ele ganha
-
-
-**Druida:**
-
-Começa com uma 
-
-No nível 9 da Torre ele ganha 
-
-
-**Mago:**
-
-Começa com uma 
-
-No nível 9 da Torre ele ganha 
-
-
-**Bardo:**
-
-Começa com uma 
-
-No nível 9 da Torre ele ganha 
-
-
-### **Estatísticas dos monstros:**
-
-
-**Fantasma da andiedade - andar 1**
-
- Vida: 25 pts
-
+ **Slime - andar 2**
+ 
+ Vida: 20 pts
+ 
  Ataque: d6
 
-
-**Zumbi estudante - andar 2**
-
+ **Esqueletos - andar 3**
+ 
  Vida: 35 pts
-
+ 
  Ataque: d8
-
-
-**Esqueleto ritalinado - andar 3**
-
+ 
+ **Zumbis - andar 4**
+ 
  Vida: 35 pts 
  
  Ataque: d8
-
-
-**Calculo I - andar 4**
-
+ 
+ **Basilisco Bebê - andar 5**
+ 
  Vida: 45 pts
-
+ 
  Ataque: d10
 
-
-**Fim de semestre - andar 5**
-
+ **Slime Maior - andar 6**
+ 
  Vida: 60 pts
-
+ 
  Ataque: d12 
 
-
-**Cérbero Caramelo - andar 6**
+**Orda de esqueletos - andar 7**
 
  Vida: 75 pts
-
+ 
  Ataque: d16
 
-
-**Grifo - andar 7**
-
+ **Batalhão de Zumbis - andar 8**
+ 
  Vida: 105 pts
-
+ 
  Ataque: d16
 
-
-**Calculo II - andar 8**
-
+ **Basilisco Mãe - andar 9**
+ 
  Vida: 135 pts
-
+ 
  Ataque: d20
 
-
-**Bender: o controlador - andar 9**
-
- Vida: 250 pts
-
- Ataque: d40
+ **Dragão Vermelho - andar 10**
  
-## Sobre o Trabalho
+ Vida: 250 pts
+ 
+ Ataque: d40
 
-No decorrer do trabalho todos foram muito participativos, desde a escolha do tema até as implementações finais, nas quais nos reunimos tanto por meio do nosso servidor no discord, quanto presencialmente na biblioteca de engenharia. Na parte de modularização era possível agir de forma mais independente, porém percebemos que o mesmo não era possível na parte de realmente escrever o código, então mesmo havendo uma separação das partes, muito foi feito em grupo, havendo a interferência de todos os participantes nas partes dos outros.
-Além disso, em nosso trabalho, tivemos uma ideia inicial sobre como o jogo seria, sendo até mesmo avaliada na entrega parcial. Porém enquanto estávamos trabalhando no código, percebemos que muitas coisas não seriam viáveis por conta do tempo e dos horários de cada um, o que limitava um pouco os encontros. Logo, tentamos deixar o jogo de forma mais simples, tirando alguns itens e mecânicas, ao mesmo tempo que pensávamos em outras para evitar que o jogo fosse desinteressante. Entre as principais mudanças estão:
-- Apenas nível 9 o herói vai receberá itens novos e aumentará a vida
-- A defesa será uma ação do personagem, não havendo mais o item “escudo”
-- Ao se defender, o ataque do inimigo diminui e a defesa “reflete” o ataque, fazendo o inimigo tomar o mesmo dano que você
-- Os ataques dos jogadores são feitos apenas de uma arma ou magia definida (mudando  no nível 9)
-- Agora os heróis apresentam vidas e ataques diferentes, dando uma idéia de níveis de dificuldade
-- Mudança em alguns nomes de vilões, para fazer mais referências à UFMG
-- A poção de dano aumenta o dano até o final do jogo em uma pequena quantidade
-- Mudanças nas classes presentes do jogo, a fim de simplifica-las, ainda seguindo as boas práticas do POO.
-
-A parte das mudanças feitas que afetam a parte das userstories e cartões CRCs será atualizada se adicionando arquivos e issues atualizados dos mesmos. No mais, para a implementação da interface gráfica utilizamos a biblioteca ncurses, que mesmo sendo antiga, era a implementação que melhor funcionou e que possibilitou focar mais no código em si.
-
-## Dependências de funcionamento
-
-A biblioteca ncurses foi utilizada para a construção da interface gráfica, então é necessário instalá-la. Para baixar é necessário do sistema operacional linux na sua máquina ou uma máquina virtual com esse mesmo sistema, então para baixar é necessário abrir o terminal e digitar a seguinte linha:
-
-```
-sudo apt-get install libncurses5-dev libncursesw5-dev
-```
-
-Além disso, o jogo foi feito pensado para o sistema linux, então para jogá-lo, é necessário, também, do sistema operacional linux na sua máquina ou uma máquina virtual com esse mesmo sistema.
-
-## Instruções de compilação e execução
-
-Para a compilação e execução do jogo utilizamos o arquivo Makefile com as seguintes opções:
-
-- Para compilar se escreve no prompt de comando `make`
-  
-- Para executar se escreve no prompt de comando `make run`
-  
-- Para executar os teste se escreve no prompt de comando `make teste`
