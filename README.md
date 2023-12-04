@@ -249,4 +249,4 @@ Para a compilação e execução do jogo utilizamos o arquivo Makefile com as se
   
 - Para executar se escreve no prompt de comando `make run`
   
-- Para executar os teste se escreve no prompt de comando `make teste`
+- Para executar os teste se escreve no prompt de comando `make test`
